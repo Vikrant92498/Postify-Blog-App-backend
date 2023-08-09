@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "author": "DuMmY <vikrantkumar92498@gmail.com> (https://github.com/Vikrant92498/Dummy.git)",
   "license": "ISC",
   "dependencies": {
