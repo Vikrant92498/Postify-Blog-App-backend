@@ -14,7 +14,9 @@ mongoose.connect(process.env.MONGO_URL, {
   }) 
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
- 
+app.get('/',(req,res)=>{
+  res.send("Hello world");
+})
 app.use('/api/auth',authRoute);
 app.use('/api/posts',postRoutes);
 const PORT = process.env.PORT;
