@@ -7,7 +7,6 @@ const BlogPost = require('../Models/postModel');
 exports.createBlogPost = async (req, res) => {
   try {
     const { title, content, image,author } = req.body;
-    console.log(req.body);
     // Create the new BlogPost without the 'author' field
     const newBlogPost = new BlogPost({ title, content,image,author });
     // Save the new BlogPost
@@ -40,7 +39,7 @@ exports.getBlogPostById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}; 
 
 // Update a specific blog post by ID
 exports.updateBlogPost = async (req, res) => {
@@ -64,16 +63,13 @@ exports.deleteBlogPost = async (req, res) => {
 };
 
 exports.likePost =async (req, res) => {
-  const {userId} = req.body; // Replace with the actual user ID (you can get it from the user session or JWT)
-    
+  const userId = req.body.logged_userId; // Replace with the actual user ID (you can get it from the user session or JWT)
   const postId = req.params.id;
   try {
     // Find the blog post by ID
     const blogPost = await BlogPost.findById(postId);
-
     // Check if the user already liked the post
     const isLiked = blogPost.likedBy.includes(userId);
-
     // Update the likes count and the user's like status
     if (isLiked) {
       blogPost.likesCount -= 1;
@@ -82,7 +78,6 @@ exports.likePost =async (req, res) => {
       blogPost.likesCount += 1;
       blogPost.likedBy.push(userId);
     }
-
     // Save the updated blog post
     const updatedPost = await blogPost.save();
 

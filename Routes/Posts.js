@@ -6,12 +6,12 @@ const blogPostController = require('../controllers/postsControllers');
 const {verifyToken} = require('../Middlewares/Auth')
 // Create a new blog post
 router.post('/', blogPostController.createBlogPost);
-
+ 
 // Get all blog posts
 router.get('/', blogPostController.getAllBlogPosts);
 
 // Get a specific blog post by ID
-router.get('/:id',verifyToken, blogPostController.getBlogPostById);
+router.get('/:id', blogPostController.getBlogPostById);
 
 // Update a specific blog post by ID
 router.put('/:id', blogPostController.updateBlogPost);
